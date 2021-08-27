@@ -1,3 +1,5 @@
+import math
+
 import mindstorms
 
 ACTIVATION_COLOR = "red"
@@ -5,8 +7,9 @@ ACTIVATION_COLOR = "red"
 MINIMAL_ANGLE = 275
 MAXIMAL_ANGLE = 220
 
-MINIMAL_SPEED = -10
-MAXIMAL_SPEED = -100
+MINIMAL_SPEED = 10
+MAXIMAL_SPEED = 100
+ROTATE_DIRECTION = -1
 
 control_color_sensor = mindstorms.ColorSensor("F")
 sensory_motor = mindstorms.Motor("D")
@@ -25,6 +28,6 @@ while True:
     continue
 
   angle = sensory_motor.get_position()
-  factor = (angle - MINIMAL_ANGLE) / (MAXIMAL_ANGLE - MINIMAL_ANGLE)
+  factor = math.fabs((angle - MINIMAL_ANGLE) / (MAXIMAL_ANGLE - MINIMAL_ANGLE))
   speed = (MAXIMAL_SPEED - MINIMAL_SPEED) * factor + MINIMAL_SPEED
-  driving_motor.start(int(speed))
+  driving_motor.start(int(ROTATE_DIRECTION * speed))
