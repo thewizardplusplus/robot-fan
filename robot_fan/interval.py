@@ -8,3 +8,9 @@ class Interval:
 
     def __len__(self):
         return self.maximum - self.minimum
+
+    def get_proportion_by_value(self, value):
+        if value < self.minimum or value > self.maximum:
+            raise RuntimeError("the value is out of the interval")
+
+        return (value - self.minimum) / len(self)

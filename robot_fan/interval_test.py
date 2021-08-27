@@ -31,3 +31,21 @@ class TestInterval(unittest.TestCase):
         interval_length = len(interval)
 
         self.assertEqual(interval_length, 0)
+
+    def test_get_proportion_by_value_success(self):
+        interval = Interval(23, 42)
+        proportion = interval.get_proportion_by_value(37.25)
+
+        self.assertAlmostEqual(proportion, 0.75)
+
+    def test_get_proportion_by_value_error_with_too_small_value(self):
+        error_message = "the value is out of the interval"
+        with self.assertRaisesRegex(RuntimeError, error_message):
+            interval = Interval(23, 42)
+            interval.get_proportion_by_value(-100)
+
+    def test_get_proportion_by_value_error_with_too_great_value(self):
+        error_message = "the value is out of the interval"
+        with self.assertRaisesRegex(RuntimeError, error_message):
+            interval = Interval(23, 42)
+            interval.get_proportion_by_value(100)
