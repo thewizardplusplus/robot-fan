@@ -1,6 +1,7 @@
 import mindstorms
 
 from robot_fan.interval import Interval
+from robot_fan.toggling_value import TogglingValue
 
 ACTIVATION_COLOR = "red"
 CONTROL_ANGLE_INTERVAL = Interval(275, 220)
@@ -12,12 +13,12 @@ sensory_motor = mindstorms.Motor("D")
 driving_motor = mindstorms.Motor("B")
 
 is_active = False
-previous_color = None
+control_color = TogglingValue(ACTIVATION_COLOR)
 while True:
-  current_color = control_color_sensor.get_color()
-  if current_color == ACTIVATION_COLOR and current_color != previous_color:
+  was_control_color_toggled = \
+    control_color.update(control_color_sensor.get_color())
+  if was_control_color_toggled:
     is_active = not is_active
-  previous_color = current_color
 
   if not is_active:
     driving_motor.stop()
