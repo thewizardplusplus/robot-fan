@@ -49,3 +49,21 @@ class TestInterval(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, error_message):
             interval = Interval(23, 42)
             interval.get_proportion_by_value(100)
+
+    def test_get_value_by_proportion_success(self):
+        interval = Interval(23, 42)
+        value = interval.get_value_by_proportion(0.75)
+
+        self.assertAlmostEqual(value, 37.25)
+
+    def test_get_value_by_proportion_error_with_too_small_proportion(self):
+        error_message = "the proportion is incorrect"
+        with self.assertRaisesRegex(RuntimeError, error_message):
+            interval = Interval(23, 42)
+            interval.get_value_by_proportion(-2)
+
+    def test_get_value_by_proportion_error_with_too_great_proportion(self):
+        error_message = "the proportion is incorrect"
+        with self.assertRaisesRegex(RuntimeError, error_message):
+            interval = Interval(23, 42)
+            interval.get_value_by_proportion(2)

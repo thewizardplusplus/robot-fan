@@ -14,3 +14,9 @@ class Interval:
             raise RuntimeError("the value is out of the interval")
 
         return (value - self.minimum) / len(self)
+
+    def get_value_by_proportion(self, proportion):
+        if proportion < 0 or proportion > 1:
+            raise RuntimeError("the proportion is incorrect")
+
+        return proportion * len(self) + self.minimum
