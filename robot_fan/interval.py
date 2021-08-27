@@ -5,3 +5,6 @@ class Interval:
 
         self.minimum = minimum
         self.maximum = maximum
+
+    def __len__(self):
+        return self.maximum - self.minimum

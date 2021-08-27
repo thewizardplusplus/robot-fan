@@ -19,3 +19,15 @@ class TestInterval(unittest.TestCase):
         error_message = "the maximum is greater than the minimum"
         with self.assertRaisesRegex(RuntimeError, error_message):
             Interval(42, 23)
+
+    def test_len_with_different_values(self):
+        interval = Interval(23, 42)
+        interval_length = len(interval)
+
+        self.assertEqual(interval_length, 19)
+
+    def test_len_with_same_values(self):
+        interval = Interval(23, 23)
+        interval_length = len(interval)
+
+        self.assertEqual(interval_length, 0)
