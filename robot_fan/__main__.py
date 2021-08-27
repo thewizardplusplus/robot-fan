@@ -1,14 +1,10 @@
-import math
-
 import mindstorms
 
+from robot_fan.interval import Interval
+
 ACTIVATION_COLOR = "red"
-
-MINIMAL_ANGLE = 275
-MAXIMAL_ANGLE = 220
-
-MINIMAL_SPEED = 10
-MAXIMAL_SPEED = 100
+CONTROL_ANGLE_INTERVAL = Interval(275, 220)
+SPEED_MODULUS_INTERVAL = Interval(10, 100)
 ROTATE_DIRECTION = -1
 
 control_color_sensor = mindstorms.ColorSensor("F")
@@ -27,7 +23,7 @@ while True:
     driving_motor.stop()
     continue
 
-  angle = sensory_motor.get_position()
-  factor = math.fabs((angle - MINIMAL_ANGLE) / (MAXIMAL_ANGLE - MINIMAL_ANGLE))
-  speed = (MAXIMAL_SPEED - MINIMAL_SPEED) * factor + MINIMAL_SPEED
-  driving_motor.start(int(ROTATE_DIRECTION * speed))
+  control_angle = sensory_motor.get_position()
+  control_factor = CONTROL_ANGLE_INTERVAL.get_proportion_by_value(control_angle)
+  speed_modulus = SPEED_MODULUS_INTERVAL.get_value_by_proportion(control_factor)
+  driving_motor.start(int(ROTATE_DIRECTION * speed_modulus))
