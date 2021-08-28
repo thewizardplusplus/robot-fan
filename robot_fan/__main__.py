@@ -1,21 +1,23 @@
 import mindstorms
 
+from robot_fan.configuration import *
 from robot_fan.interval import Interval
 from robot_fan.running import run_control_loop
 
-ACTIVATION_COLOR = "red"
-CONTROL_ANGLE_INTERVAL = Interval(275, 220)
-SPEED_MODULUS_INTERVAL = Interval(10, 100)
-ROTATE_DIRECTION = -1
-
-control_color_sensor = mindstorms.ColorSensor("F")
-sensory_motor = mindstorms.Motor("D")
-driving_motor = mindstorms.Motor("B")
+control_color_sensor = mindstorms.ColorSensor(CONTROL_COLOR_SENSOR_PORT)
+sensory_motor = mindstorms.Motor(SENSORY_MOTOR_PORT)
+driving_motor = mindstorms.Motor(DRIVING_MOTOR_PORT)
 run_control_loop(
     # parameters
     activation_color=ACTIVATION_COLOR,
-    control_angle_interval=CONTROL_ANGLE_INTERVAL,
-    speed_modulus_interval=SPEED_MODULUS_INTERVAL,
+    control_angle_interval=Interval(
+        MINIMAL_CONTROL_ANGLE,
+        MAXIMAL_CONTROL_ANGLE,
+    ),
+    speed_modulus_interval=Interval(
+        MINIMAL_SPEED_MODULUS,
+        MAXIMAL_SPEED_MODULUS,
+    ),
     rotate_direction=ROTATE_DIRECTION,
 
     # handlers
