@@ -5,7 +5,18 @@ PROJECT_FILES = \
 	robot_fan/running.py \
 	robot_fan/__main__.py
 
-.PHONY: test build
+.PHONY: help test build
+
+help:
+	@echo "Usage:"
+	@echo "  make [options] <target>"
+	@echo
+	@echo "Options: see for the details \"man make\"."
+	@echo
+	@echo "Targets:"
+	@echo "  help   Show this help message."
+	@echo "  test   Run the unit tests."
+	@echo "  build  Run the building."
 
 test:
 	python3 -m unittest discover --pattern '*_test.py'
