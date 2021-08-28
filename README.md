@@ -1,6 +1,16 @@
 # robot-fan
 
+The fan model built using LEGO® MINDSTORMS® Robot Inventor.
+
 _**Disclaimer:** LEGO® and MINDSTORMS® is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this project._
+
+## Features
+
+- touch control to turn on and off:
+  - based on LEGO® MINDSTORMS® Color Sensor;
+- proportional control of the rotation speed:
+  - based on LEGO® MINDSTORMS® Medium Motor;
+- touch and proportional controls are independent.
 
 ## Testing
 
