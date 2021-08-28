@@ -4,8 +4,10 @@ _**Disclaimer:** LEGO® and MINDSTORMS® is a trademark of the LEGO Group of com
 
 ## Testing
 
+To run the unit tests, use the following command:
+
 ```
-$ python3 -m unittest discover -p '*_test.py'
+$ make test
 ```
 
 ## Building

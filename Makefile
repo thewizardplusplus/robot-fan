@@ -5,7 +5,10 @@ PROJECT_FILES = \
 	robot_fan/running.py \
 	robot_fan/__main__.py
 
-.PHONY: build
+.PHONY: test build
+
+test:
+	python3 -m unittest discover --pattern '*_test.py'
 
 build:
 	mkdir --parents builds
