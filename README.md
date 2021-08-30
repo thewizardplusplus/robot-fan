@@ -1,5 +1,7 @@
 # robot-fan
 
+![](docs/photo.jpg)
+
 The fan model built using LEGO® MINDSTORMS® Robot Inventor.
 
 _**Disclaimer:** LEGO® and MINDSTORMS® is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this project._
